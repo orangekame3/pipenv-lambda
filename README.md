@@ -1,5 +1,21 @@
 # pipenv-lambda
 
+Pipenvを利用してLambdaの開発環境をセットアップするデモスクリプトです。
+
+前提としているツール
+
+* docker-compose
+* pyenv(もしくはPython環境) 
+* zipコマンドとmake コマンド
+* aws-cli2
+
+
+使用ツール
+ * pipenv
+ * pytest
+ * mypy
+ * localstack
+
 
 ## ディレクトリ構成
 
