@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "*"
+xlwt = "*"
+xlsxwriter = "*"
+
+[dev-packages]
+pytest = "*"
+mypy = "*"
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+mypy = "mypy model.py lambda.py utils/utils.py"
+pytest = "pytest -vv"
