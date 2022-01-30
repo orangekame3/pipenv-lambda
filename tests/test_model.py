@@ -13,7 +13,7 @@ def handler():
 
 
 @pytest.mark.parametrize(
-    "input_dict,want_dict",
+    "input_dict,expected_dict",
     [
         (
             [
@@ -68,8 +68,8 @@ def handler():
         ),
     ],
 )
-def test_process(handler, input_dict, want_dict):
+def test_process(handler, input_dict, expected_dict):
     json_dict = pd.DataFrame.from_dict(input_dict)
     got = handler.process(json_dict).sort_index(axis=1, ascending=False)
-    want = pd.DataFrame.from_dict(want_dict).sort_index(axis=1, ascending=False)
-    pd.testing.assert_frame_equal(got, want)
+    expected = pd.DataFrame.from_dict(expected_dict).sort_index(axis=1, ascending=False)
+    pd.testing.assert_frame_equal(got, expected)

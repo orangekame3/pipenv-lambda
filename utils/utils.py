@@ -1,11 +1,11 @@
-from mimesis import Person
-from mimesis.locales import Locale
-from random import randint
-from fire import Fire
 import datetime
 import json
-import boto3
+from random import randint
 
+import boto3
+from fire import Fire
+from mimesis import Person
+from mimesis.locales import Locale
 
 person = Person(Locale.JA)
 
@@ -46,8 +46,8 @@ def main(iterate_num: int) -> str:
     s3 = boto3.client(
         service_name="s3",
         endpoint_url=endpoint,
-        aws_access_key_id="dummy",
-        aws_secret_access_key="dummy",
+        aws_access_key_id="test",
+        aws_secret_access_key="test",
     )
     bucket = "test-bucket"
     send = "test.json"

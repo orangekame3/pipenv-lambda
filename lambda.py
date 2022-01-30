@@ -9,8 +9,8 @@ else:
     s3 = boto3.client(
         service_name="s3",
         endpoint_url=endpoint,
-        aws_access_key_id="dummy",
-        aws_secret_access_key="dummy",
+        aws_access_key_id="test",
+        aws_secret_access_key="test",
     )
 
 

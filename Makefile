@@ -1,4 +1,4 @@
-.PHONY: clean zip  delete cretae update invoke log test
+.PHONY: clean zip  delete cretae update invoke log test bucket download json
 PROJECT_DIR=$(shell pwd)
 DEPLOY_PACKAGES_DIR=deploy-packages
 
@@ -19,7 +19,7 @@ zip:clean
 
 delete:
 	aws --endpoint-url=http://localhost:4566 \
-    --region us-east-1 --profile localstack lambda delete-function \
+    --region ap-northeast-1 --profile local lambda delete-function \
     --function-name=pipenv-lambda
 	
 create:
@@ -29,6 +29,7 @@ create:
     --role=DummyRole \
     --handler=lambda.lambda_handler \
     --zip-file fileb://./bin/lambda.zip \
+	--region ap-northeast-1 \
     --endpoint-url=http://localhost:4566
 
 
@@ -36,14 +37,16 @@ update:
 	aws lambda update-function-code \
     --function-name=pipenv-lambda \
     --zip-file fileb://./bin/lambda.zip \
+	--region ap-northeast-1 \
     --endpoint-url=http://localhost:4566
 
 invoke:
 	aws lambda --endpoint-url=http://localhost:4566 invoke \
 	--function-name pipenv-lambda \
+	--region ap-northeast-1 \
 	--payload '{ "input_obj": "test.json" }' \
 	--cli-binary-format raw-in-base64-out \
-	--profile localstack  result.log
+	--profile local  result.log
 
 log:
 	cat result.log
@@ -55,7 +58,7 @@ test:
 bucket:
 	aws s3 mb s3://test-bucket \
 	--endpoint-url=http://localhost:4566 \
-	--profile localstack
+	--profile local
 
 download:
 	aws s3 --endpoint-url=http://localhost:4566 \
